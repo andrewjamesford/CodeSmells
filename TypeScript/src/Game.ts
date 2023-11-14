@@ -2,7 +2,7 @@ export class Game {
     private _lastSymbol: string = ' ';
     private _board: Board = new Board();
 
-    public Play(symbol: string, x: number, y: number) : void {
+    public Play({ symbol, x, y }: { symbol: string; x: number; y: number; }) : void {
         //if first move
         if (this._lastSymbol == ' ') {
             //if player is X
