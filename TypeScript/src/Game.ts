@@ -24,44 +24,27 @@ export class Game {
         this._board.AddTileAt(symbol, x, y);
     }
 
+    public CheckRow(row : number) : String {
+        if (this._board.TileAt(row, 0)!.Symbol != ' ' &&
+            this._board.TileAt(row, 1)!.Symbol != ' ' &&
+            this._board.TileAt(row, 2)!.Symbol != ' ') {
+            //if first row is full with same symbol
+            if (this._board.TileAt(row, 0)!.Symbol == this._board.TileAt(row, 1)!.Symbol &&
+                this._board.TileAt(row, 2)!.Symbol == this._board.TileAt(row, 1)!.Symbol) {
+                return this._board.TileAt(row, 0)!.Symbol;
+            }
+        }
+    }
+
     public Winner() : string {
         //if the positions in first row are taken
-        if (this._board.TileAt(0, 0)!.Symbol != ' ' &&
-                this._board.TileAt(0, 1)!.Symbol != ' ' &&
-                this._board.TileAt(0, 2)!.Symbol != ' ') {
-            //if first row is full with same symbol
-            if (this._board.TileAt(0, 0)!.Symbol ==
-                    this._board.TileAt(0, 1)!.Symbol &&
-                    this._board.TileAt(0, 2)!.Symbol == this._board.TileAt(0, 1)!.Symbol) {
-                return this._board.TileAt(0, 0)!.Symbol;
-            }
-        }
+        this.CheckRow(0);
 
         //if the positions in first row are taken
-        if (this._board.TileAt(1, 0)!.Symbol != ' ' &&
-                this._board.TileAt(1, 1)!.Symbol != ' ' &&
-                this._board.TileAt(1, 2)!.Symbol != ' ') {
-            //if middle row is full with same symbol
-            if (this._board.TileAt(1, 0)!.Symbol ==
-                    this._board.TileAt(1, 1)!.Symbol &&
-                    this._board.TileAt(1, 2)!.Symbol ==
-                            this._board.TileAt(1, 1)!.Symbol) {
-                return this._board.TileAt(1, 0)!.Symbol;
-            }
-        }
+        this.CheckRow(1);
 
         //if the positions in first row are taken
-        if (this._board.TileAt(2, 0)!.Symbol != ' ' &&
-                this._board.TileAt(2, 1)!.Symbol != ' ' &&
-                this._board.TileAt(2, 2)!.Symbol != ' ') {
-            //if middle row is full with same symbol
-            if (this._board.TileAt(2, 0)!.Symbol ==
-                    this._board.TileAt(2, 1)!.Symbol &&
-                    this._board.TileAt(2, 2)!.Symbol ==
-                            this._board.TileAt(2, 1)!.Symbol) {
-                return this._board.TileAt(2, 0)!.Symbol;
-            }
-        }
+        this.CheckRow(2);
 
         return ' ';
     }
